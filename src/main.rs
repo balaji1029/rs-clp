@@ -1,6 +1,7 @@
 use std::env;
 
 use rscc::frontend::lexer::lexer_rules;
+use rscc::frontend::grammar::grammar;
 
 fn main() {
     // let input = "10. + 20.0 + .30\n30 - 20";
@@ -18,10 +19,13 @@ fn main() {
     let lexer_rules = lexer_rules();
     let lexemes = santiago::lexer::lex(&lexer_rules, &input).expect("Error in lexing");
 
-    for lexeme in lexemes {
-        println!("Lexeme: {}, Value: {}, Line: {}", lexeme.kind, lexeme.raw, lexeme.position.line);
-        // println!(" {}", lexeme.raw);
-    }
+    let grammar = grammar();
+    let _parse_tree = santiago::parser::parse(&grammar, &lexemes).expect("Error in parsing");
+
+    // for lexeme in lexemes {
+    //     // println!("Lexeme: {}, Value: {}, Line: {}", lexeme.kind, lexeme.raw, lexeme.position.line);
+    //     // println!(" {}", lexeme.raw);
+    // }
 
     // println!("Hello, world!");
 }

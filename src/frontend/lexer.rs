@@ -29,8 +29,9 @@ pub fn lexer_rules() -> LexerRules {
         "DEFAULT" | "MULT" = string "*";
         "DEFAULT" | "DIV" = string "/";
 
-        // Semicolon
+        // Punctuation
         "DEFAULT" | "SEMICOLON" = string ";";
+        "DEFAULT" | "COMMA" = string ",";
 
         // Parentheses and curly brackets
         "DEFAULT" | "LEFT_CURLY_BRACKET" = string "{";
